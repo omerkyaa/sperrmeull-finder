@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SperrmüllFinder Orange Theme - Dark Mode -->
+    <color name="sf_orange_500">#FF9F2E</color>  <!-- Main orange - selected state (same in dark) -->
+    <color name="sf_orange_600">#E6881A</color>  <!-- Pressed state (same in dark) -->
+    <color name="sf_orange_200">#FFCC80</color>  <!-- Ripple/indicator (lighter for dark mode) -->
+    <color name="sf_orange_100">#FFF8E1</color>  <!-- Very light orange for dark backgrounds -->
+    <color name="sf_navy_700">#1A365D</color>    <!-- Navy outline/border (same in dark) -->
+    <color name="sf_gray_500">#757575</color>    <!-- Unselected icons/text (darker gray for dark mode) -->
+    <color name="sf_gray_400">#9E9E9E</color>    <!-- Unselected icons/text (lighter for contrast) -->
+</resources>

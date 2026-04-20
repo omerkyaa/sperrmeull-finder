@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">SperrmüllFinder</string>
+
+    <!-- Home Screen - English Fallback -->
+    <string name="home_title">Home</string>
+    <string name="feed_empty_title">No posts yet</string>
+    <string name="feed_empty_desc">Check back later or expand your search radius</string>
+    <string name="feed_loading">Loading posts…</string>
+    <string name="feed_error_title">Loading Error</string>
+    <string name="feed_error_desc">Check your internet connection and try again</string>
+    <string name="action_retry">Try Again</string>
+    <string name="pull_to_refresh">Pull to refresh</string>
+    <string name="error_refresh_failed">Could not refresh feed. Please try again.</string>
+    
+    <!-- Post Actions -->
+    <string name="action_like">Like</string>
+    <string name="action_unlike">Unlike</string>
+    <string name="action_comment">Comment</string>
+    <string name="action_share">Share</string>
+    <string name="action_more">More</string>
+    <string name="likes_count">%d likes</string>
+    <string name="comments_count">%d comments</string>
+    <string name="shares_count">%d shares</string>
+    
+    <!-- Time Formatting -->
+    <string name="time_just_now">Just now</string>
+    <string name="time_minutes_ago">%d min ago</string>
+    <string name="time_hours_ago">%d hours ago</string>
+    <string name="time_days_ago">%d days ago</string>
+    <string name="time_weeks_ago">%d weeks ago</string>
+    <string name="time_months_ago">%d months ago</string>
+    <string name="time_years_ago">%d years ago</string>
+    
+    <!-- Notifications -->
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_empty_title">No notifications</string>
+    <string name="notifications_empty_desc">Notifications about likes, comments and followers will appear here</string>
+    <string name="mark_all_read">Mark all as read</string>
+    <string name="no_notifications">No notifications</string>
+    
+    <!-- Notification Types -->
+    <string name="notif_like_title">New Like</string>
+    <string name="notif_like_body">%s liked your post</string>
+    <string name="notif_comment_title">New Comment</string>
+    <string name="notif_comment_body">%s commented on your post</string>
+    <string name="notif_follow_title">New Follower</string>
+    <string name="notif_follow_body">%s is now following you</string>
+    <string name="notif_premium_expired_title">Premium Expired</string>
+    <string name="notif_premium_expired_body">Your Premium subscription has expired</string>
+    <string name="notif_xp_milestone_title">Level Up!</string>
+    <string name="notif_xp_milestone_body">Congratulations! You reached level %d</string>
+    <string name="settings_logout_failed">Logout failed</string>
+    <string name="settings_update_failed">Could not update settings</string>
+    <string name="auth_nickname_checking">Checking nickname...</string>
+    <string name="auth_nickname_available">Nickname is available</string>
+    
+    <!-- User Profile -->
+    <string name="user_profile_title">Profile</string>
+    <string name="user_posts_title">Posts</string>
+    <string name="user_followers_title">Followers</string>
+    <string name="user_following_title">Following</string>
+    
+    <!-- User Profile -->
+    <string name="following">Following</string>
+    <string name="unfollow">Unfollow</string>
+    <string name="message">Message</string>
+    <string name="report_user">Report User</string>
+    <string name="share_profile">Share Profile</string>
+    <string name="block_user">Block User</string>
+    <string name="more_options">More Options</string>
+    <string name="level_display">Level</string>
+    <string name="premium_member">Premium Member</string>
+    <string name="user_profile_loading">Loading profile…</string>
+    <string name="user_profile_error">Error loading profile</string>
+    <string name="user_not_found">User not found</string>
+    <string name="follow_success">Now following %s</string>
+    <string name="unfollow_success">Unfollowed %s</string>
+    <string name="profile_shared">Profile shared</string>
+    <string name="user_blocked">User blocked</string>
+    <string name="user_reported">User reported</string>
+
+    <!-- Error Messages -->
+    <string name="error_network_title">Network Error</string>
+    <string name="error_network_desc">Check your internet connection</string>
+    <string name="error_loading_notifications">Error loading notifications</string>
+    <string name="error_marking_read">Error marking as read</string>
+    <string name="error_like_failed">Like failed</string>
+    <string name="error_unlike_failed">Unlike failed</string>
+    
+    <!-- Success Messages -->
+    <string name="success_marked_all_read">All notifications marked as read</string>
+    <string name="success_post_liked">Post liked</string>
+    <string name="success_post_unliked">Like removed</string>
+    
+    <!-- Social Features -->
+    <string name="followers_title">Followers</string>
+    <string name="following_title">Following</string>
+    <string name="followers_empty_title">No Followers Yet</string>
+    <string name="following_empty_title">Not Following Anyone</string>
+    <string name="followers_empty_desc">When people follow you, they\'ll appear here</string>
+    <string name="followers_empty_description">When people follow you, they\'ll appear here</string>
+    <string name="following_empty_desc">When you follow people, they\'ll appear here</string>
+    <string name="following_empty_description">When you follow people, they\'ll appear here</string>
+    <string name="social_follow">Follow</string>
+    <string name="social_unfollow">Unfollow</string>
+    <string name="social_followers_tab_followers">Followers</string>
+    <string name="social_followers_tab_following">Following</string>
+    <string name="social_user_search_title">Search Users</string>
+    <string name="social_user_search_hint">Search by name…</string>
+    <string name="social_user_search_start_typing">Start typing to search for users</string>
+    <string name="social_user_search_no_results">No users found</string>
+    <string name="followers_loading">Loading followers…</string>
+    <string name="following_loading">Loading following…</string>
+    <string name="followers_error">Error loading followers</string>
+    <string name="following_error">Error loading following</string>
+    <string name="follow">Follow</string>
+    
+    <!-- User Search Screen -->
+    <string name="search_users_title">Search Users</string>
+    <string name="search_users_hint">Search by name…</string>
+    <string name="searching_users">Searching users…</string>
+    <string name="loading_suggestions">Loading suggestions…</string>
+    <string name="search_results_title">Search Results</string>
+    <string name="suggested_users_title">Suggested Users</string>
+    <string name="search_no_results_title">No Results</string>
+    <string name="search_no_results_desc">No users found with this name</string>
+    <string name="search_empty_desc">Start typing to search for users</string>
+    <string name="followers_count_format">%d followers</string>
+    
+    <!-- Content Descriptions -->
+    <string name="cd_clear">Clear</string>
+    
+    <!-- Content Descriptions -->
+    <string name="cd_back">Back</string>
+    <string name="cd_notification_icon">Notifications</string>
+    <string name="cd_unread_badge">%d unread notifications</string>
+    <string name="cd_like_button">Like button</string>
+    <string name="cd_comment_button">Comment button</string>
+    <string name="cd_share_button">Share button</string>
+    <string name="cd_more_button">More options</string>
+    <string name="cd_user_profile_image">Profile picture of %s</string>
+    <string name="cd_post_owner_image">Post by %s</string>
+    <string name="cd_notification_item">Notification from %s</string>
+    
+    <!-- Report System -->
+    <string name="report_title">Report</string>
+    <string name="report_subtitle">Why are you reporting this?</string>
+    <string name="report_description_label">Additional details (optional)</string>
+    <string name="report_description_hint">Describe the issue in more detail…</string>
+    <string name="report_description_optional">Optional - Minimum 10 characters if provided</string>
+    <string name="report_submit">Submit Report</string>
+    <string name="report_success_title">Reported!</string>
+    <string name="report_success_message">Thank you for your report. We will review it as soon as possible.</string>
+    
+    <string name="report_reason_spam_title">Spam</string>
+    <string name="report_reason_spam_desc">Unwanted advertising or commercial content</string>
+    <string name="report_reason_harassment_title">Harassment</string>
+    <string name="report_reason_harassment_desc">Hate speech, threats, or bullying</string>
+    <string name="report_reason_dangerous_title">Dangerous Goods</string>
+    <string name="report_reason_dangerous_desc">Illegal, dangerous, or prohibited items</string>
+    <string name="report_reason_misleading_title">Misleading Information</string>
+    <string name="report_reason_misleading_desc">False or deceptive information</string>
+    <string name="report_reason_scam_title">Scam</string>
+    <string name="report_reason_scam_desc">Fraudulent activities or phishing</string>
+    <string name="report_reason_inappropriate_title">Inappropriate Content</string>
+    <string name="report_reason_inappropriate_desc">Offensive, abusive, or inappropriate material</string>
+    <string name="report_reason_other_title">Other</string>
+    <string name="report_reason_other_desc">Other violations or issues</string>
+    
+    <string name="report_post">Report Post</string>
+    <string name="report_comment">Report Comment</string>
+
+    <!-- Block System -->
+    <string name="block_user_title">Block User?</string>
+    <string name="block_user_message">This person won\'t be able to see you anymore and you won\'t see any content from them.</string>
+    <string name="block_user_add_reason">Add reason (optional)</string>
+    <string name="block_user_reason_hint">Why are you blocking this person?</string>
+    <string name="block_user_confirm">Block</string>
+    <string name="block_user_menu">Block User</string>
+    
+    <string name="unblock_user_title">Unblock User?</string>
+    <string name="unblock_user_message">This person will be able to see you again and you\'ll see their content.</string>
+    <string name="unblock_user_confirm">Unblock</string>
+    <string name="unblock_user_button">Unblock</string>
+    
+    <string name="blocked_users_title">Blocked Users</string>
+    <string name="blocked_users_empty_title">No Blocked Users</string>
+    <string name="blocked_users_empty_message">You haven\'t blocked anyone yet.</string>
+    <string name="blocked_user_date">Blocked on %s</string>
+    
+    <!-- Delete Account -->
+    <string name="delete_account_title">Delete Account</string>
+    <string name="delete_account_warning_title">Permanently Delete Account?</string>
+    <string name="delete_account_grace_period">You have 30 days to reverse this decision</string>
+    <string name="delete_account_what_happens">What happens?</string>
+    <string name="delete_account_info_1">Your account will be deactivated immediately</string>
+    <string name="delete_account_info_2">You have 30 days to cancel the deletion</string>
+    <string name="delete_account_info_3">Your posts will remain as \"Deleted User\"</string>
+    <string name="delete_account_info_4">After 30 days, all your data will be permanently deleted</string>
+    <string name="delete_account_reason_title">Why are you leaving us?</string>
+    <string name="delete_account_reason_subtitle">Help us improve (optional)</string>
+    <string name="delete_account_reason_hint">Your feedback is valuable to us…</string>
+    <string name="delete_account_button">Delete Account</string>
+    
+    <string name="delete_account_pending_title">Account Deletion Scheduled</string>
+    <string name="delete_account_pending_message">Your account will be automatically deleted after the deadline. You can cancel the deletion at any time.</string>
+    <string name="delete_account_days_remaining">days remaining</string>
+    <string name="delete_account_imminent_warning">Warning: Your account will be deleted in less than 7 days!</string>
+    <string name="delete_account_cancel_button">Cancel Deletion</string>
+    
+    <string name="delete_account_success_title">Deletion Requested</string>
+    <string name="delete_account_success_message">Your account will be deleted in 30 days. You can log in anytime to reverse the deletion.</string>
+    
+    <string name="delete_account_confirm_title">Are You Absolutely Sure?</string>
+    <string name="delete_account_confirm_message">This is a serious matter. Your account will be permanently deleted in 30 days.</string>
+    <string name="delete_account_confirm_yes">Yes, Delete Account</string>
+    
+    <!-- Delete Post -->
+    <string name="delete_post_title">Delete Post?</string>
+    <string name="delete_post_message">Do you really want to delete this post?</string>
+    <string name="delete_post_warning">This action cannot be undone</string>
+    <string name="delete_post_confirm">Delete</string>
+    <string name="delete_post_menu">Delete Post</string>
+    
+    <!-- Account Deletion Banner -->
+    <string name="account_deletion_pending_title">Account Deletion Scheduled</string>
+    <string name="days_until_deletion">%d days remaining</string>
+    <string name="account_deletion_banner_message">Your account will be permanently deleted soon. You can cancel this at any time.</string>
+    
+    <!-- Modern Paywall Screen -->
+    <string name="premium_paywall_title">SperrmüllFinder Premium</string>
+    <string name="premium_paywall_subtitle">Unlock exclusive features and experience the full potential</string>
+    <string name="best_value">-39%</string>
+    <string name="subscribe_for">Subscribe for %1$s</string>
+    <string name="processing">Processing…</string>
+    <string name="premium_terms_privacy">By subscribing, you agree to the Terms of Service and Privacy Policy</string>
+    <string name="revenuecat_paywall_config_error_title">Paywall configuration problem</string>
+    <string name="revenuecat_paywall_config_error_body">RevenueCat could not load your published paywall. Details: %1$s</string>
+    <string name="premium_upgrade_manage_title">Manage or Upgrade Plan</string>
+    <string name="premium_upgrade_manage_subtitle">Change your active subscription or switch to another premium plan anytime.</string>
+    <string name="current_plan_label">Current Plan</string>
+    <string name="premium_change_plan_cta">Change Plan</string>
+    
+    <!-- Premium Features -->
+    <string name="feature_unlimited_search">Unlimited Search</string>
+    <string name="feature_unlimited_search_desc">Search without radius limit anywhere in your city</string>
+    <string name="feature_early_access">Early Access</string>
+    <string name="feature_early_access_desc">See new posts 10 minutes before others</string>
+    <string name="feature_notifications">Premium Notifications</string>
+    <string name="feature_notifications_desc">Get notifications for your favorite categories</string>
+    <string name="feature_xp_boost">XP Boost</string>
+    <string name="feature_xp_boost_desc">Earn up to 20% more XP on all actions</string>
+    <string name="feature_premium_badge">Premium Badge</string>
+    <string name="feature_premium_badge_desc">Show your exclusive premium badge and level frame</string>
+    <string name="feature_archive_access">Full Archive Access</string>
+    <string name="feature_archive_access_desc">View all details of your archived posts</string>
+    <string name="premium_feature_unlimited_search">Unlimited Search</string>
+    <string name="premium_feature_unlimited_search_desc">Search through all posts without radius limitations</string>
+    <string name="premium_feature_advanced_filters">Advanced Filters</string>
+    <string name="premium_feature_advanced_filters_desc">Filter by category, city, radius, and time range</string>
+    <string name="premium_unlimited_radius_desc">Browse posts on the map without distance limits</string>
+    <string name="premium_feature_premium_markers">Premium Markers</string>
+    <string name="premium_feature_premium_markers_desc">Use exclusive map marker styles for premium users</string>
+
+    <!-- OneSignal -->
+    <string name="onesignal_welcome_title">Your OneSignal integration is complete!</string>
+    <string name="onesignal_welcome_message">Click the button below to trigger your first journey via an in-app message.</string>
+    <string name="onesignal_welcome_trigger_button">Trigger your first journey</string>
+    <string name="onesignal_send_push_title">Send a Push Notification</string>
+    <string name="onesignal_send_push_message">Type a message below and tap Send to receive a push notification on this device.</string>
+    <string name="onesignal_send_push_input_hint">Enter your notification message</string>
+    <string name="onesignal_send_button">Send</string>
+    <string name="onesignal_send_push_success">Notification sent!</string>
+    <string name="onesignal_send_push_failure">Failed to send notification.</string>
+    <string name="onesignal_rest_key_missing">OneSignal REST API key missing. Add ONESIGNAL_REST_API_KEY in local.properties.</string>
+</resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Primary Colors -->
+    <color name="sperrmull_primary">#1976D2</color>
+    <color name="sperrmull_primary_dark">#0D47A1</color>
+    <color name="sperrmull_secondary">#03DAC6</color>
+    <color name="sperrmull_secondary_dark">#018786</color>
+    
+    <!-- SperrmüllFinder Orange Theme - Bottom Navigation & FAB -->
+    <color name="sf_orange_500">#FF9F2E</color>  <!-- Main orange - selected state -->
+    <color name="sf_orange_600">#E6881A</color>  <!-- Pressed state -->
+    <color name="sf_orange_200">#FFE0B3</color>  <!-- Ripple/indicator (light) -->
+    <color name="sf_orange_100">#FFF2E6</color>  <!-- Very light orange for backgrounds -->
+    <color name="sf_navy_700">#1A365D</color>    <!-- Navy outline/border -->
+    <color name="sf_gray_500">#9E9E9E</color>    <!-- Unselected icons/text -->
+    <color name="sf_gray_400">#BDBDBD</color>    <!-- Unselected icons/text (dark mode) -->
+    
+    <!-- Basic Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    
+    <!-- Gray Scale Colors -->
+    <color name="gray_50">#FAFAFA</color>
+    <color name="gray_100">#F5F5F5</color>
+    <color name="gray_200">#EEEEEE</color>
+    <color name="gray_300">#E0E0E0</color>
+    <color name="gray_400">#BDBDBD</color>
+    <color name="gray_500">#9E9E9E</color>
+    <color name="gray_600">#757575</color>
+    <color name="gray_700">#616161</color>
+    <color name="gray_800">#424242</color>
+    <color name="gray_900">#212121</color>
+    
+    <!-- Semantic Gray Colors -->
+    <color name="gray_light">#BDBDBD</color>  <!-- gray_400 -->
+    <color name="gray_medium">#9E9E9E</color> <!-- gray_500 -->
+    <color name="gray_dark">#424242</color>   <!-- gray_800 -->
+    
+    <!-- Status Colors -->
+    <color name="success_green">#4CAF50</color>
+    <color name="warning_orange">#FF9800</color>
+    <color name="error_red">#F44336</color>
+    <color name="info_blue">#2196F3</color>
+    
+    <!-- Premium Colors -->
+    <color name="premium_gold">#FFD700</color>
+    <color name="premium_crystal">#E1F5FE</color>
+    
+    <!-- Surface Colors -->
+    <color name="surface_variant">#F5F5F5</color>
+    <color name="chip_gray">#E0E0E0</color>
+    
+    <!-- Map Marker Colors -->
+    <color name="marker_basic">#9E9E9E</color>
+    <color name="marker_premium">#FFD700</color>
+    <color name="marker_premium_crystal">#00BCD4</color>
+</resources>

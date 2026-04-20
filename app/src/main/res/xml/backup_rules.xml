@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Exclude sensitive data -->
+    <exclude domain="sharedpref" path="firebase_app_check_debug_secret.xml" />
+    <exclude domain="sharedpref" path="revenuecat_preferences.xml" />
+    <exclude domain="database" path="user_sessions.db" />
+</full-backup-content>

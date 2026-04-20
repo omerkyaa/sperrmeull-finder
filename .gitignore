@@ -1,0 +1,86 @@
+# ============================================================
+# SperrmüllFinder — .gitignore
+# ============================================================
+
+# ---------- Android / Gradle ----------
+*.iml
+.gradle/
+.idea/
+/captures
+.externalNativeBuild
+.cxx
+obj/
+
+# Build outputs
+/build
+**/build/
+**/.transforms/
+**/.cxx/
+
+# Gradle wrapper noise (but keep the jar)
+gradle-app.setting
+!gradle-wrapper.jar
+
+# APK / bundle artifacts
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# IntelliJ / Android Studio project files
+*.ipr
+*.iws
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# ---------- Secrets & Local config ----------
+local.properties
+/local.properties
+
+# Signing keys — NEVER COMMIT
+*.jks
+*.keystore
+/keystore.properties
+
+# Firebase client config (replace with your own when cloning)
+app/google-services.json
+/.firebaserc
+/.firebase/
+
+# Firebase admin / service-account keys — NEVER COMMIT
+**/serviceAccountKey*.json
+**/*adminsdk*.json
+
+# Cloud Functions
+functions/node_modules/
+functions/lib/
+functions/.env
+functions/.env.*
+functions/.runtimeconfig.json
+
+# ---------- Logs & crash dumps ----------
+*.log
+hs_err_pid*.log
+replay_pid*.log
+firestore-debug.log*
+firebase-debug.log*
+ui-debug.log*
+database-debug.log*
+
+# ---------- Misc local-only tooling ----------
+# Windows/PowerShell build-recovery scripts (developer local use only)
+*.bat
+*.ps1
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python (for any utility scripts)
+__pycache__/
+*.py[cod]
+.venv/

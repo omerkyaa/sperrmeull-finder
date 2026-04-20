@@ -1,0 +1,30 @@
+# =====================================================================
+# SperrmüllFinder — local.properties template
+# =====================================================================
+# Copy this file to `local.properties` at the repo root and fill the values.
+# `local.properties` is gitignored — NEVER commit real keys.
+# =====================================================================
+
+# --- Android SDK (auto-filled by Android Studio on first open) ---------
+sdk.dir=/Users/<you>/Library/Android/sdk
+
+# --- Google Maps ------------------------------------------------------
+# Create an API key in Google Cloud Console → Enable "Maps SDK for Android".
+MAPS_API_KEY=YOUR_GOOGLE_MAPS_API_KEY
+
+# --- RevenueCat -------------------------------------------------------
+# Public SDK key from https://app.revenuecat.com → Project settings → API keys.
+REVENUECAT_SDK_API_KEY=YOUR_REVENUECAT_PUBLIC_SDK_KEY
+
+# --- OneSignal (optional, used by Cloud Functions) --------------------
+ONESIGNAL_REST_API_KEY=YOUR_ONESIGNAL_REST_API_KEY
+
+# --- AdMob — Release --------------------------------------------------
+# Production AdMob app + unit IDs (debug build uses Google test units automatically).
+ADMOB_APP_ID_RELEASE=ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX
+ADMOB_HOME_BANNER_AD_UNIT_ID_RELEASE=ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX
+
+# --- AdMob — Staging --------------------------------------------------
+# Optional; falls back to RELEASE values if unset.
+ADMOB_APP_ID_STAGING=ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX
+ADMOB_HOME_BANNER_AD_UNIT_ID_STAGING=ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX

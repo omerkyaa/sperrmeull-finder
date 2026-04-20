@@ -1,0 +1,30 @@
+{
+  "_comment": "Template only — replace every YOUR_* placeholder with values from your own Firebase Console (Project settings → Android app → Download google-services.json). Rename this file to 'google-services.json'. The real file is gitignored.",
+  "project_info": {
+    "project_number": "YOUR_PROJECT_NUMBER",
+    "project_id": "YOUR_PROJECT_ID",
+    "storage_bucket": "YOUR_PROJECT_ID.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:YOUR_PROJECT_NUMBER:android:YOUR_APP_ID_HASH",
+        "android_client_info": {
+          "package_name": "com.omerkaya.sperrmuellfinder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "YOUR_FIREBASE_API_KEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

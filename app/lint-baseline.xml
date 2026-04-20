@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.13.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.13.0)" variant="all" version="8.13.0">
+
+    <!-- Kotlin Analysis API warnings suppression baseline -->
+    <!-- These warnings are caused by Kotlin 1.9.20 + AGP 8.13.0 compatibility issues -->
+    <!-- They do not affect app functionality and will be resolved in future versions -->
+    
+    <issue
+        id="KotlinAnalysisApiWarning"
+        message="Missing analysis API method org/jetbrains/kotlin/analysis/api/lifetime/KaDefaultLifetimeTokenProvider"
+        category="Correctness"
+        priority="6"
+        summary="Kotlin Analysis API compatibility warning"
+        explanation="This warning is caused by version compatibility between Kotlin 1.9.20 and Android Gradle Plugin 8.13.0. It does not affect app functionality."
+        errorLine1="Missing analysis API method"
+        errorLine2="                              ^">
+    </issue>
+
+</issues>

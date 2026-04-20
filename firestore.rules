@@ -1,0 +1,383 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      // Admin access is granted exclusively via the `admin_roles` collection.
+      // Use the `setAdminRole` Cloud Function (see functions/adminManagement.js) to bootstrap
+      // the first admin — never hardcode UIDs in security rules.
+      return isSignedIn() &&
+        exists(/databases/$(database)/documents/admin_roles/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/admin_roles/$(request.auth.uid)).data.role in ['admin', 'super_admin'];
+    }
+
+    function isOwnerOrAdmin(uid) {
+      return isOwner(uid) || isAdmin();
+    }
+
+    function isValidTimestampField(value) {
+      return value is timestamp || value == request.time;
+    }
+
+    function isLimitedListQuery(maxLimit) {
+      return request.query.limit != null && request.query.limit <= maxLimit;
+    }
+
+    function hasStringList(value, maxSize) {
+      return value is list &&
+             value.size() <= maxSize &&
+             value.where(item, !(item is string)).size() == 0;
+    }
+
+    function hasNonEmptyString(data, key) {
+      return data.keys().hasAny([key]) &&
+             data[key] is string &&
+             data[key].size() > 0;
+    }
+
+    function postOwnerFromData(data) {
+      return data.ownerid is string
+        ? data.ownerid
+        : (data.ownerId is string
+          ? data.ownerId
+          : (data.owner_id is string ? data.owner_id : ""));
+    }
+
+    function postCreatedAtFromData(data) {
+      return data.created_at is timestamp
+        ? data.created_at
+        : (data.createdAt is timestamp ? data.createdAt : request.time);
+    }
+
+    function postUpdatedAtFromData(data) {
+      return data.updated_at is timestamp
+        ? data.updated_at
+        : (data.updatedAt is timestamp ? data.updatedAt : request.time);
+    }
+
+    function hasValidPostLocation(data) {
+      return data.location is map &&
+        (
+          (data.location.latitude is number && data.location.longitude is number) ||
+          (data.location.lat is number && data.location.lng is number)
+        );
+    }
+
+    function isValidPostCreate() {
+      return request.resource.data.keys().hasAll([
+        'images',
+        'description',
+        'location',
+        'likes_count',
+        'comments_count',
+        'status'
+      ]) &&
+      postOwnerFromData(request.resource.data) == request.auth.uid &&
+      request.resource.data.description is string &&
+      hasStringList(request.resource.data.images, 3) &&
+      (!request.resource.data.keys().hasAny(['category_en']) ||
+        hasStringList(request.resource.data.category_en, 10)) &&
+      (!request.resource.data.keys().hasAny(['category_de']) ||
+        hasStringList(request.resource.data.category_de, 10)) &&
+      hasValidPostLocation(request.resource.data) &&
+      isValidTimestampField(postCreatedAtFromData(request.resource.data)) &&
+      isValidTimestampField(postUpdatedAtFromData(request.resource.data)) &&
+      request.resource.data.likes_count is int &&
+      request.resource.data.comments_count is int &&
+      request.resource.data.likes_count == 0 &&
+      request.resource.data.comments_count == 0;
+    }
+
+    function isValidPostUpdateByOwner() {
+      let changed = request.resource.data.diff(resource.data).affectedKeys();
+      return postOwnerFromData(resource.data) == request.auth.uid &&
+             postOwnerFromData(request.resource.data) == postOwnerFromData(resource.data) &&
+             !changed.hasAny([
+               'ownerid',
+               'ownerId',
+               'owner_id',
+               'views_count',
+               'shares_count'
+             ]);
+    }
+
+    // Allows any signed-in user to increment/decrement ONLY counter fields atomically.
+    // Used by addComment/deleteComment (comments_count) and toggleLike (likes_count) batch writes.
+    function isValidCounterUpdate() {
+      let changed = request.resource.data.diff(resource.data).affectedKeys();
+      return changed.hasOnly(['comments_count', 'likes_count', 'views_count']);
+    }
+
+    function isValidCommentCreate(postId) {
+      return exists(/databases/$(database)/documents/posts/$(postId)) &&
+        request.resource.data.keys().hasAll([
+          'postId',
+          'authorId',
+          'content'
+        ]) &&
+        request.resource.data.postId == postId &&
+        request.resource.data.authorId is string &&
+        request.resource.data.authorId == request.auth.uid &&
+        request.resource.data.content is string &&
+        request.resource.data.content.size() > 0 &&
+        (
+          (request.resource.data.keys().hasAny(['created_at']) &&
+            isValidTimestampField(request.resource.data.created_at)) ||
+          (request.resource.data.keys().hasAny(['createdAt']) &&
+            isValidTimestampField(request.resource.data.createdAt))
+        );
+    }
+
+    function isValidLegacyCommentCreate() {
+      return request.resource.data.keys().hasAll([
+        'postId',
+        'authorId',
+        'content'
+      ]) &&
+      request.resource.data.postId is string &&
+      exists(/databases/$(database)/documents/posts/$(request.resource.data.postId)) &&
+      request.resource.data.authorId is string &&
+      request.resource.data.authorId == request.auth.uid &&
+      request.resource.data.content is string &&
+      request.resource.data.content.size() > 0 &&
+      (
+        (request.resource.data.keys().hasAny(['created_at']) &&
+          isValidTimestampField(request.resource.data.created_at)) ||
+        (request.resource.data.keys().hasAny(['createdAt']) &&
+          isValidTimestampField(request.resource.data.createdAt))
+      );
+    }
+
+    function isValidLikeCreate(postId, likeId) {
+      return request.resource.data.keys().hasAll(['postId', 'userId']) &&
+             request.resource.data.postId == postId &&
+             request.resource.data.userId == request.auth.uid &&
+             likeId == request.auth.uid &&
+             (
+               (request.resource.data.keys().hasAny(['createdAt']) &&
+                 isValidTimestampField(request.resource.data.createdAt)) ||
+               (request.resource.data.keys().hasAny(['created_at']) &&
+                 isValidTimestampField(request.resource.data.created_at))
+             );
+    }
+
+    function isValidTopLevelLikeCreate() {
+      return request.resource.data.keys().hasAll(['postId', 'userId']) &&
+             request.resource.data.postId is string &&
+             exists(/databases/$(database)/documents/posts/$(request.resource.data.postId)) &&
+             request.resource.data.userId == request.auth.uid &&
+             (
+               (request.resource.data.keys().hasAny(['createdAt']) &&
+                 isValidTimestampField(request.resource.data.createdAt)) ||
+               (request.resource.data.keys().hasAny(['created_at']) &&
+                 isValidTimestampField(request.resource.data.created_at))
+             );
+    }
+
+    function isValidFollowCreate() {
+      let followerId = request.resource.data.followerId is string
+        ? request.resource.data.followerId
+        : (request.resource.data.follower_id is string
+          ? request.resource.data.follower_id
+          : (request.resource.data.userId is string ? request.resource.data.userId : ""));
+      let followedId = request.resource.data.followedId is string
+        ? request.resource.data.followedId
+        : (request.resource.data.followingId is string
+          ? request.resource.data.followingId
+          : (request.resource.data.targetUserId is string ? request.resource.data.targetUserId : ""));
+      return followerId == request.auth.uid &&
+             followedId is string &&
+             followedId.size() > 0 &&
+             followerId != followedId;
+    }
+
+    function isValidUserNotificationCreate(userId) {
+      return request.resource.data.toUserId is string &&
+             request.resource.data.toUserId == userId &&
+             request.resource.data.type is string &&
+             request.resource.data.title is string &&
+             request.resource.data.message is string &&
+             request.resource.data.isRead is bool &&
+             (
+               (request.resource.data.keys().hasAny(['createdAt']) &&
+                 isValidTimestampField(request.resource.data.createdAt)) ||
+               (request.resource.data.keys().hasAny(['created_at']) &&
+                 isValidTimestampField(request.resource.data.created_at))
+             ) &&
+             (!request.resource.data.keys().hasAny(['fromUserId']) ||
+               request.resource.data.fromUserId == request.auth.uid);
+    }
+
+    match /users_public/{userId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn() && isLimitedListQuery(50);
+      allow create, update, delete: if isOwnerOrAdmin(userId);
+    }
+
+    match /users_private/{userId} {
+      allow get: if isOwnerOrAdmin(userId);
+      allow list: if false;
+      allow create, update, delete: if isOwnerOrAdmin(userId);
+    }
+
+    match /users/{userId} {
+      allow get: if isOwnerOrAdmin(userId);
+      // Only admins can list the private users collection; client-side user search uses users_public
+      allow list: if isAdmin();
+      allow write: if isOwnerOrAdmin(userId);
+    }
+
+    // Legacy compatibility for old app versions.
+    match /users/{userId}/search_history/{entryId} {
+      allow get, list, create, update, delete: if isOwnerOrAdmin(userId);
+    }
+
+    match /posts/{postId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn() && isLimitedListQuery(200);
+      allow create: if isSignedIn() && isValidPostCreate();
+      allow update: if isSignedIn() &&
+        (
+          isValidPostUpdateByOwner() ||
+          isValidCounterUpdate() ||
+          isAdmin()
+        );
+      allow delete: if isSignedIn() &&
+        (postOwnerFromData(resource.data) == request.auth.uid || isAdmin());
+
+      match /comments/{commentId} {
+        allow get: if isSignedIn();
+        allow list: if isSignedIn() && isLimitedListQuery(200);
+        allow create: if isSignedIn() && isValidCommentCreate(postId);
+        allow update, delete: if isSignedIn() &&
+          (resource.data.authorId == request.auth.uid || isAdmin());
+      }
+
+      match /likes/{likeId} {
+        allow get: if isSignedIn();
+        allow list: if isSignedIn() && isLimitedListQuery(200);
+        allow create: if isSignedIn() && isValidLikeCreate(postId, likeId);
+        allow delete: if isSignedIn() &&
+          (likeId == request.auth.uid || resource.data.userId == request.auth.uid || isAdmin());
+        allow update: if false;
+      }
+    }
+
+    match /comments/{commentId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn() && isLimitedListQuery(200);
+      allow create, update, delete: if false;
+    }
+
+    match /likes/{likeId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn() && isLimitedListQuery(200);
+      allow create, update, delete: if false;
+    }
+
+    match /notifications/{notificationId} {
+      allow read, write: if false;
+    }
+
+    match /notifications/{userId}/user_notifications/{notificationId} {
+      allow get: if isOwnerOrAdmin(userId);
+      allow list: if isOwnerOrAdmin(userId) && isLimitedListQuery(200);
+      allow create: if isSignedIn() &&
+                    (isValidUserNotificationCreate(userId) || isAdmin());
+      allow update: if isOwnerOrAdmin(userId) &&
+                    request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isRead']);
+      allow delete: if isOwnerOrAdmin(userId);
+    }
+
+    match /followers/{userId}/following/{targetUserId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn() && isLimitedListQuery(200);
+      allow create, delete: if isOwner(userId);
+      allow update: if false;
+    }
+
+    match /followers/{userId}/followers/{sourceUserId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn() && isLimitedListQuery(200);
+      allow create: if isSignedIn() && sourceUserId == request.auth.uid;
+      allow delete: if isSignedIn() && (sourceUserId == request.auth.uid || isAdmin());
+      allow update: if false;
+    }
+
+    match /follows/{followId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn() && isLimitedListQuery(200);
+      allow create: if isSignedIn() && isValidFollowCreate();
+      allow delete: if isSignedIn() &&
+                    (
+                      isAdmin() ||
+                      resource.data.followerId == request.auth.uid ||
+                      resource.data.follower_id == request.auth.uid ||
+                      resource.data.userId == request.auth.uid
+                    );
+      allow update: if false;
+    }
+
+    match /blocked_users/{blockerId}/blocks/{blockedUserId} {
+      allow get, list: if isOwnerOrAdmin(blockerId);
+      allow write: if isOwnerOrAdmin(blockerId);
+    }
+
+    match /blocked_users/{blockerId}/blocked/{blockedUserId} {
+      allow get, list: if isOwnerOrAdmin(blockerId);
+      allow write: if isOwnerOrAdmin(blockerId);
+    }
+
+    match /device_tokens/{userId}/tokens/{tokenId} {
+      allow get, list: if isOwnerOrAdmin(userId);
+      allow create, update, delete: if isOwnerOrAdmin(userId);
+    }
+
+    match /purchases/{userId}/{document=**} {
+      allow get: if isOwnerOrAdmin(userId);
+      allow list: if false;
+      allow write: if false;
+    }
+
+    match /reports/{reportId} {
+      allow create: if isSignedIn() &&
+                    request.resource.data.reporterId == request.auth.uid;
+      allow get: if (isSignedIn() && resource.data.reporterId == request.auth.uid) || isAdmin();
+      allow list: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if false;
+    }
+
+    match /admin_logs/{logId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    match /moderation_queue/{entryId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    match /account_deletion_requests/{userId} {
+      allow get, list: if isOwnerOrAdmin(userId);
+      allow create, update, delete: if isOwnerOrAdmin(userId);
+    }
+
+    match /account_deletions/{userId} {
+      allow get: if isOwnerOrAdmin(userId);
+      allow list: if false;
+      allow write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

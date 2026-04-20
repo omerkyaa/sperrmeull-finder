@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bottom Navigation -->
+    <string name="nav_home">Startseite</string>
+    <string name="nav_search">Suchen</string>
+    <string name="nav_map">Karte</string>
+    <string name="nav_camera">Kamera</string>
+    <string name="nav_profile">Profil</string>
+</resources>
