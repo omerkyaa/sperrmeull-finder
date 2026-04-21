@@ -1,7 +1,9 @@
 # SperrmüllFinder
 
 > **Discover free bulk-waste treasures around you.**
-> A production-grade Android application built with Jetpack Compose, Clean Architecture, and Firebase — enabling users to share, discover, and claim bulk-waste items (*Sperrmüll*) in their neighborhood.
+> A production-grade Android application built with Jetpack Compose, Clean Architecture, and Firebasel — enabling users to share, discover, and claim bulk-waste items (*Sperrmüll*) in their neighborhood.
+> Website: [spermuellfinder.de](https://sperrmuellfinder.de)
+
 
 [![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white)](https://developer.android.com)
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.9.20-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org)
@@ -474,9 +476,9 @@ Extensive documentation is organised under [`docs/`](docs/README.md):
 
 ## About the Author
 
-**Ömer Kaya** — Senior Android / Full-Stack Engineer building production-grade Kotlin + Firebase applications.
+**Ömer Kaya** — Android / Full-Stack Developer building production-grade Kotlin + Firebase applications.
 
-- Website: [sperrmuellfinder.com](https://sperrmuellfinder.com)
+- Website: [spermuellfinder.de](https://sperrmuellfinder.de)
 - Focus: Jetpack Compose, Clean Architecture, Firebase at scale, Gradle performance, subscription economies (RevenueCat).
 
 This project demonstrates end-to-end ownership of a modern Android product: multi-module architecture, real-time backend, monetization, moderation tooling, i18n, CI-ready build system, and GDPR compliance.
